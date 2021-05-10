@@ -1,13 +1,13 @@
 public class Application {
     public static void main(String[] args) {
 
-        Input in = new Input();
+        AnalyzeFile in = new AnalyzeFile();
         in.scanList();
         for (int i = 0; i < in.getLines().size(); i++) {
-            System.out.print(in.getLines().get(i));
+            System.out.println(in.getLines().get(i));
         }
 
-        in.checkColumns();
+        in.checkList();
 
     }
 
