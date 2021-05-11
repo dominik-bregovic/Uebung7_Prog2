@@ -8,26 +8,18 @@ public class AnalyzeFile {
     private List<String> lines = new ArrayList<>();
     private List<String> columnValue = new ArrayList<>();
     private List<Integer> column = new ArrayList<>();
+    private Errors error = new Errors(lines);
 
-    public void checkList(){
-        checkColumns();
-        checkAmountOfColumns(3);
-
-
+    public AnalyzeFile(int columns){
+        scanList();
+        checkList(columns);
     }
 
-    public void writeLog(String log){
-        try{
-            FileWriter fw = new FileWriter("logfile.txt",true);
-            BufferedWriter writer = new BufferedWriter(fw);
-            writer.write(log);
-//            System.out.println("Should have written text");
-            writer.close();
-        }catch(IOException e){
-            System.out.println("!!No content written into file!!");
-        }
-    }
+    public void checkList(int columns){
+        this.error.emptyColumn();
+        checkAmountOfColumns(columns);
 
+    }
 
     public void scanList(){
         try {
@@ -47,19 +39,8 @@ public class AnalyzeFile {
         }
     }
 
-    public void checkColumns(){
-        for (String line : this.lines)
-            for (int j = 0; j < line.length(); j++) {
-                if (line.charAt(0) == ';')
-                    writeLog("Maleformed input @ line: " + line + " --ignoring line\n");
-                if (line.charAt(j) == ';' && line.charAt(j + 1) == ';')
-                    writeLog("Maleformed input @ line: " + line + " --ignoring line\n");
-            }
-    }
-
     public void checkAmountOfColumns(Integer amountOfColumns){
         columnValues(amountOfColumns);
-        System.out.println(columnValue);
         checkColumnValues();
     }
 
@@ -93,33 +74,9 @@ public class AnalyzeFile {
     public void checkColumnValues(){
         for (int i = 0; i < this.columnValue.size(); i++) {
             if (this.columnValue.get(i).equals("")) {
-                parsingError(this.column.get(i), this.lines.get(i/3));
+                this.error.parsingError(this.column.get(i), this.lines.get(i/3));
             }
         }
-    }
-
-
-    public void parsingError(Integer column, String line){
-
-        List<String> firstThreeColumns = new ArrayList<>();
-        firstThreeColumns.add("DW");
-        firstThreeColumns.add("LW");
-        firstThreeColumns.add("WW");
-        try {
-            Integer validValue = Integer.valueOf(";");
-        }catch (NumberFormatException e){
-            writeLog("Number parsing error for " + firstThreeColumns.get(column) + " @ line: " +
-                    line + e.getMessage() + "\n");
-        }
-
-    }
-
-    public String getTextFile() {
-        return textFile;
-    }
-
-    public List<String> getLines() {
-        return lines;
     }
 
 }
