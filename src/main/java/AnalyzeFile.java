@@ -8,7 +8,6 @@ public class AnalyzeFile {
     private List<String> lines = new ArrayList<>();
     private List<String> columnValue = new ArrayList<>();
     private List<Integer> column = new ArrayList<>();
-    private List<Integer> line = new ArrayList<>();
 
     public void checkList(){
         checkColumns();
@@ -78,7 +77,6 @@ public class AnalyzeFile {
                     } else {
                         this.columnValue.add(value);
                         this.column.add(countColumn);
-//                        this.line.add(i);
                         countColumn++;
                         value = "";
                     }
