@@ -8,15 +8,14 @@ public class AnalyzeFile {
     private List<String> lines = new ArrayList<>();
     private List<String> columnValue = new ArrayList<>();
     private List<Integer> column = new ArrayList<>();
-    private List<String> words = new ArrayList<>();
+     List<String> words = new ArrayList<>();
     private Errors error = new Errors(lines);
 
     public AnalyzeFile(){
         scanList();
         checkList(3);
-        formatTextToList();
-        System.out.println(this.words);
-       // here is a removing error, cant remove empty elements checkRating();
+
+       // not ready yet checkRating();
     }
 
     public void checkList(int columns){
@@ -42,6 +41,7 @@ public class AnalyzeFile {
                 e.printStackTrace();
             }
         }
+        formatTextToList();
     }
 
 
@@ -74,7 +74,7 @@ public class AnalyzeFile {
     public void checkColumnValues(){
         for (int i = 0; i < this.columnValue.size(); i++) {
             if (this.columnValue.get(i).equals("")) {
-                this.error.parsingError(this.column.get(i), this.lines.get(i/3));
+                this.error.firstColumnsError(this.column.get(i), this.lines.get(i/3));
             }
         }
     }
@@ -94,8 +94,11 @@ public class AnalyzeFile {
     }
 
     public void checkRating(){
-        for (int i = 0; i < words.size(); i++) {
-            System.out.println(words.get(i+5));
+        for (int i = 11; i < words.size(); i += 6) {
+            if (words.get(i).equals("")){
+                error.ratingError();
+            }
+            System.out.print(words.get(i)+", ");
         }
     }
 }

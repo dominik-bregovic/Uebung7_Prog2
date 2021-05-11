@@ -22,7 +22,7 @@ public class Errors {
             }
     }
 
-    public void parsingError(Integer column, String line){
+    public void firstColumnsError(Integer column, String line){
 
         List<String> firstThreeColumns = new ArrayList<>();
         firstThreeColumns.add("DW");
@@ -33,6 +33,15 @@ public class Errors {
         }catch (NumberFormatException e){
             writeLog("Number parsing error for " + firstThreeColumns.get(column) + " @ line: " +
                     line + " -- ignoring\n" +  e.toString());
+        }
+
+    }
+
+    public void ratingError(){
+        try {
+            Integer validValue = Integer.valueOf(";");
+        }catch (NumberFormatException e){
+            writeLog("Parse exception for Bewertung @line : " + " @ line: " + " -- ignoring\n" +  e.toString());
         }
 
     }
