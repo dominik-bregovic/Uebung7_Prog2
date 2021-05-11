@@ -1,16 +1,18 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class AnalyzeFile {
     private String textFile = "";
     private String text = "";
     private BufferedReader br;
     private List<String> lines = new ArrayList<>();
+    private List<String> columnValue = new ArrayList<>();
+    private List<Integer> column = new ArrayList<>();
+    private List<Integer> line = new ArrayList<>();
 
     public void checkList(){
         checkColumns();
-//        checkAmountOfColumns(3);
+        checkAmountOfColumns(3);
 
 
     }
@@ -56,24 +58,57 @@ public class AnalyzeFile {
             }
     }
 
-    public void checkAmountOfColumns(int amountOfColumns){
-        for (String line : this.lines)
-            for (int j = 0; j < line.length(); j++)
-                if (String.valueOf(line.charAt(j)) == "" || String.valueOf(line.charAt(j)) == ";" ) {
-                    parsingError(";", j, line);
-                }else {
-
-                }
+    public void checkAmountOfColumns(Integer amountOfColumns){
+        columnValues(amountOfColumns);
+        System.out.println(columnValue);
+        checkColumnValues();
     }
 
-    public void parsingError(String numb, int column, String line){
+    public void columnValues(Integer amountOfColumns){
+        Integer countColumn = 0;
+        String value = "";
+
+        for (int i = 0; i < this.lines.size();i++) {
+            for (int j = 0; j < this.lines.get(i).length(); j++) {
+
+                if (countColumn < amountOfColumns) {
+
+                    if (lines.get(i).charAt(j) != ';') {
+                        value += lines.get(i).charAt(j);
+                    } else {
+                        this.columnValue.add(value);
+                        this.column.add(countColumn);
+//                        this.line.add(i);
+                        countColumn++;
+                        value = "";
+                    }
+
+                }else {
+                    countColumn = 0;
+                    break;
+                }
+
+            }
+        }
+    }
+
+    public void checkColumnValues(){
+        for (int i = 0; i < this.columnValue.size(); i++) {
+            if (this.columnValue.get(i).equals("")) {
+                parsingError(this.column.get(i), this.lines.get(i/3));
+            }
+        }
+    }
+
+
+    public void parsingError(Integer column, String line){
 
         List<String> firstThreeColumns = new ArrayList<>();
         firstThreeColumns.add("DW");
         firstThreeColumns.add("LW");
         firstThreeColumns.add("WW");
         try {
-            Integer validValue = Integer.valueOf(numb);
+            Integer validValue = Integer.valueOf(";");
         }catch (NumberFormatException e){
             writeLog("Number parsing error for " + firstThreeColumns.get(column) + " @ line: " +
                     line + e.getMessage() + "\n");
