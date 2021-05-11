@@ -2,31 +2,36 @@ import java.io.*;
 import java.util.*;
 
 public class AnalyzeFile {
-    private String textFile = "";
+
     private String text = "";
     private BufferedReader br;
     private List<String> lines = new ArrayList<>();
     private List<String> columnValue = new ArrayList<>();
     private List<Integer> column = new ArrayList<>();
+    private List<String> words = new ArrayList<>();
     private Errors error = new Errors(lines);
 
-    public AnalyzeFile(int columns){
+    public AnalyzeFile(){
         scanList();
-        checkList(columns);
+        checkList(3);
+        formatTextToList();
+        System.out.println(this.words);
+       // here is a removing error, cant remove empty elements checkRating();
     }
 
     public void checkList(int columns){
-        this.error.emptyColumn();
-        checkAmountOfColumns(columns);
-
+        this.error.emptyColumnError();
+        columnValues(columns);
+        checkColumnValues();
     }
 
     public void scanList(){
         try {
-            br = new BufferedReader(new FileReader("music2021.csv"));
+            br = new BufferedReader(new FileReader("src/main/resources/music2021.csv"));
             String lines;
             while ((lines = br.readLine()) != null){
                 this.lines.add(lines);
+                this.text += lines+";";
             }
         }catch (IOException e){
             System.err.println("scan error");
@@ -39,10 +44,6 @@ public class AnalyzeFile {
         }
     }
 
-    public void checkAmountOfColumns(Integer amountOfColumns){
-        columnValues(amountOfColumns);
-        checkColumnValues();
-    }
 
     public void columnValues(Integer amountOfColumns){
         Integer countColumn = 0;
@@ -66,7 +67,6 @@ public class AnalyzeFile {
                     countColumn = 0;
                     break;
                 }
-
             }
         }
     }
@@ -79,4 +79,23 @@ public class AnalyzeFile {
         }
     }
 
+    public void formatTextToList(){
+        String[] words = text.split(";");
+        this.words = Arrays.asList(words);
+    }
+
+    public void cleanList(){
+
+        for (int i = 0; i < this.words.size(); i++) {
+            if (this.words.get(i).equals("")){
+                this.words.remove(i);
+            }
+        }
+    }
+
+    public void checkRating(){
+        for (int i = 0; i < words.size(); i++) {
+            System.out.println(words.get(i+5));
+        }
+    }
 }

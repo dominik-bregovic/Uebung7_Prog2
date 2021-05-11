@@ -12,7 +12,7 @@ public class Errors {
         this.lines = lines;
     }
 
-    public void emptyColumn(){
+    public void emptyColumnError(){
         for (String line : this.lines)
             for (int j = 0; j < line.length(); j++) {
                 if (line.charAt(0) == ';')
@@ -32,14 +32,14 @@ public class Errors {
             Integer validValue = Integer.valueOf(";");
         }catch (NumberFormatException e){
             writeLog("Number parsing error for " + firstThreeColumns.get(column) + " @ line: " +
-                    line + e.getMessage() + "\n");
+                    line + " -- ignoring\n" +  e.toString());
         }
 
     }
 
     public void writeLog(String log){
         try{
-            FileWriter fw = new FileWriter("logfile.txt",true);
+            FileWriter fw = new FileWriter("logfile.txt");
             BufferedWriter writer = new BufferedWriter(fw);
             writer.write(log);
 //            System.out.println("Should have written text");
