@@ -1,1 +1,76 @@
+Number parsing error for DW @ line: [﻿DW;LW;WW;Titel;Interpret;Bewertung] -- ignoring
+java.lang.NumberFormatException: For input string: "﻿DW"
 Maleformed input @ line: [8;;1;Unter Verdacht;Capital Bra , Ngee;2,6;] --ignoring line
+Number parsing error for LW @ line: [8;;1;Unter Verdacht;Capital Bra , Ngee;2,6] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [21;;1;Angekommen;Ufo361 , Data Luv;2,1;] --ignoring line
+Number parsing error for LW @ line: [21;;1;Angekommen;Ufo361 , Data Luv;2,1] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [44;;1;Hör Nicht Auf;Cro , Teesy;4,7;] --ignoring line
+Number parsing error for LW @ line: [44;;1;Hör Nicht Auf;Cro , Teesy;4,7] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [50;;1;Unter Dem Radar;Ak Ausserkontrolle;3;] --ignoring line
+Number parsing error for LW @ line: [50;;1;Unter Dem Radar;Ak Ausserkontrolle;3] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [56;;1;Ok;Dj Jeezy, Summer Cem , Nimo , Jay1;4;] --ignoring line
+Number parsing error for LW @ line: [56;;1;Ok;Dj Jeezy, Summer Cem , Nimo , Jay1;4] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [64;;2;Bed;Joel Corry, Raye , David Guetta;3,2;] --ignoring line
+Number parsing error for LW @ line: [64;;2;Bed;Joel Corry, Raye , David Guetta;3,2] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [66;;2;Floating Through Space;Sia , David Guetta;3,9;] --ignoring line
+Number parsing error for LW @ line: [66;;2;Floating Through Space;Sia , David Guetta;3,9] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [67;;1;Heartbreak Anniversary;Giveon;4;] --ignoring line
+Number parsing error for LW @ line: [67;;1;Heartbreak Anniversary;Giveon;4] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [68;;1;Solid;Young Stoner Life, Young Thug , Gunna , Drake;2;] --ignoring line
+Number parsing error for LW @ line: [68;;1;Solid;Young Stoner Life, Young Thug , Gunna , Drake;2] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [69;;41;Lovefool;Twocolors;3,3;] --ignoring line
+Number parsing error for LW @ line: [69;;41;Lovefool;Twocolors;3,3] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [74;;69;Monster;Lum!X , Gabry Ponte;4,2;] --ignoring line
+Number parsing error for LW @ line: [74;;69;Monster;Lum!X , Gabry Ponte;4,2] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [75;;47;Memories;David Guetta ,Kid Cudi;3,4;] --ignoring line
+Number parsing error for LW @ line: [75;;47;Memories;David Guetta ,Kid Cudi;3,4] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Number parsing error for DW @ line: [﻿DW;LW;WW;Titel;Interpret;Bewertung] -- ignoring
+java.lang.NumberFormatException: For input string: "﻿DW"
+Maleformed input @ line: [8;;1;Unter Verdacht;Capital Bra , Ngee;2,6;] --ignoring line
+Number parsing error for LW @ line: [8;;1;Unter Verdacht;Capital Bra , Ngee;2,6] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [21;;1;Angekommen;Ufo361 , Data Luv;2,1;] --ignoring line
+Number parsing error for LW @ line: [21;;1;Angekommen;Ufo361 , Data Luv;2,1] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [44;;1;Hör Nicht Auf;Cro , Teesy;4,7;] --ignoring line
+Number parsing error for LW @ line: [44;;1;Hör Nicht Auf;Cro , Teesy;4,7] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [50;;1;Unter Dem Radar;Ak Ausserkontrolle;3;] --ignoring line
+Number parsing error for LW @ line: [50;;1;Unter Dem Radar;Ak Ausserkontrolle;3] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [56;;1;Ok;Dj Jeezy, Summer Cem , Nimo , Jay1;4;] --ignoring line
+Number parsing error for LW @ line: [56;;1;Ok;Dj Jeezy, Summer Cem , Nimo , Jay1;4] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [64;;2;Bed;Joel Corry, Raye , David Guetta;3,2;] --ignoring line
+Number parsing error for LW @ line: [64;;2;Bed;Joel Corry, Raye , David Guetta;3,2] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [66;;2;Floating Through Space;Sia , David Guetta;3,9;] --ignoring line
+Number parsing error for LW @ line: [66;;2;Floating Through Space;Sia , David Guetta;3,9] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [67;;1;Heartbreak Anniversary;Giveon;4;] --ignoring line
+Number parsing error for LW @ line: [67;;1;Heartbreak Anniversary;Giveon;4] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [68;;1;Solid;Young Stoner Life, Young Thug , Gunna , Drake;2;] --ignoring line
+Number parsing error for LW @ line: [68;;1;Solid;Young Stoner Life, Young Thug , Gunna , Drake;2] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [69;;41;Lovefool;Twocolors;3,3;] --ignoring line
+Number parsing error for LW @ line: [69;;41;Lovefool;Twocolors;3,3] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [74;;69;Monster;Lum!X , Gabry Ponte;4,2;] --ignoring line
+Number parsing error for LW @ line: [74;;69;Monster;Lum!X , Gabry Ponte;4,2] -- ignoring
+java.lang.NumberFormatException: For input string: ""
+Maleformed input @ line: [75;;47;Memories;David Guetta ,Kid Cudi;3,4;] --ignoring line
+Number parsing error for LW @ line: [75;;47;Memories;David Guetta ,Kid Cudi;3,4] -- ignoring
+java.lang.NumberFormatException: For input string: ""

@@ -74,7 +74,7 @@ public class AnalyzeFile {
     public void checkColumnValues(){
         for (int i = 0; i < this.columnValue.size(); i++) {
             if (this.columnValue.get(i).equals("")) {
-                this.error.firstColumnsError(this.column.get(i), this.lines.get(i/3));
+             //   this.error.firstColumnsError(this.column.get(i), this.lines.get(i/3));
             }
         }
     }

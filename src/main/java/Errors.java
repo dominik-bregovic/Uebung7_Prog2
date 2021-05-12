@@ -16,18 +16,15 @@ public class Errors {
         writeLog("Maleformed input @ line: [" + line + "] --ignoring line\n");
     }
 
-    public void firstColumnsError(Integer column, String line){
+    public void firstColumnsError(Integer column, String line, Exception e){
 
         List<String> firstThreeColumns = new ArrayList<>();
         firstThreeColumns.add("DW");
         firstThreeColumns.add("LW");
         firstThreeColumns.add("WW");
-        try {
-            Integer validValue = Integer.valueOf(";");
-        }catch (NumberFormatException e){
             writeLog("Number parsing error for " + firstThreeColumns.get(column) + " @ line: [" +
                     line + "] -- ignoring\n" +  e.toString()+ "\n");
-        }
+
 
     }
 

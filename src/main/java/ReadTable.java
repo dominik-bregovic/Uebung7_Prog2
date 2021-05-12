@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class ReadTable {
     ArrayList<String> titel = new ArrayList<>();
     ArrayList<String> interpret = new ArrayList<>();
     ArrayList<String> bewertung = new ArrayList<>();
+    Integer column;
     Errors errors = new Errors(categories);
 //    List<String> readLines = new ArrayList<>();
 
@@ -31,21 +33,12 @@ public class ReadTable {
         try {
             br = new BufferedReader(new FileReader("src/main/resources/music2021.csv"));
             while ((lines = br.readLine()) != null){
-                checkIfEmpty(lines += ";");
+                checkEmptyIntegration(lines);
+                firstColumnsCheck(lines);
                 initializeTable(lines += ";");
-
             }
         }catch (IOException e){
-            errors.emptyColumnError(lines);
-            try {
-                checkIfEmpty(lines);
-            }catch(NumberFormatException f){
-                checkIfEmpty(lines);
-            }
-//        }catch (NumberFormatException e){
-//            errors.firstColumnsError();
-//        }catch (ParseException e){
-//            errors.ratingError();
+
         }
         finally {
             try {
@@ -65,15 +58,38 @@ public class ReadTable {
         categories.add(bewertung);
     }
 
-    public void checkIfEmpty(String line){
+    public void checkEmptyIntegration(String lines){
+        try {
+            checkIfEmpty(lines += ";");
+        }catch (IOException e){
+            errors.emptyColumnError(lines);
+        }
+    }
+
+    public void checkIfEmpty(String line) throws IOException{
             for (int i = 1; i < line.length(); i++) {
                 if (line.charAt(0) == ';') {
-                    i++;
+                    throw new IOException();
                 }
                 if (line.charAt(i-1) == ';' && line.charAt(i) == ';') {
-                    i++;
+                    throw new IOException();
                 }
             }
+    }
+
+
+    public void firstColumnsCheck(String line) {
+        String[] values = line.trim().split(";");
+        Integer number;
+        try {
+            for (int i = 0; i < 3; i++) {
+                this.column = i;
+                number = Integer.valueOf(values[i]);
+            }
+        }catch (NumberFormatException e){
+            errors.firstColumnsError( this.column,line, e);
+        }
+
     }
 
     public void initializeTable(String line){
