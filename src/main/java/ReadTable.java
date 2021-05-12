@@ -30,12 +30,16 @@ public class ReadTable {
 
     public void scanList(){
         String lines = "";
+        Integer countLine = 1;
         try {
             br = new BufferedReader(new FileReader("src/main/resources/music2021.csv"));
             while ((lines = br.readLine()) != null){
                 checkEmptyIntegration(lines);
-                firstColumnsCheck(lines);
+                //some issues with firstColumsCheck line should also be ignored when saved into the list
+                //and when calling the second integration then the first doesnt write into log
+               // firstColumnsCheckIntegration(lines,countLine);
                 initializeTable(lines += ";");
+                countLine++;
             }
         }catch (IOException e){
 
@@ -75,6 +79,11 @@ public class ReadTable {
                     throw new IOException();
                 }
             }
+    }
+
+    public void firstColumnsCheckIntegration(String lines, Integer ignoreFirstLine){
+        if (ignoreFirstLine != 1)
+        firstColumnsCheck(lines += ";");
     }
 
 
