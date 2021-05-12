@@ -1,36 +1,25 @@
 import java.util.*;
 
-public class FormatFile {
+public class FormatFile implements Comparable<FormatFile>{
 
     private List<String> analizedWords;
     private List<String> seperatedInterpret;
-    //private List<String> uniqueInterprets = new ArrayList<>();
     private List<String> countedInterprets = new ArrayList<>();
 
     public FormatFile(List wordList){
         this.analizedWords = wordList;
         formating();
-   ///////////////////////
-        printList(sortingListToUniqueElements(seperatedInterpret));
         printList(countedInterprets);
-
-
     }
 
     public void formating(){
-        seperatedInterpret = separateInterprets();
-        /////////////////
-        wordCounter(sortingListToUniqueElements(seperatedInterpret));
+        separateInterprets();
+        wordCounter();
+        countedInterprets = sortingListToUniqueElements(countedInterprets);
     }
 
 
-    public void searchForInterpret(){
-        for (int i = 10; i < analizedWords.size(); i += 6) {
-            seperatedInterpret.add(analizedWords.get(i));
-        }
-    }
-
-    public List<String> separateInterprets(){
+    public void separateInterprets(){
         List<String> seperated = new ArrayList<>();
         String[] seperatedInterpet;
 
@@ -38,10 +27,10 @@ public class FormatFile {
             seperatedInterpet = analizedWords.get(i).split(",");
 
             for (int j = 0; j < seperatedInterpet.length; j++) {
-                seperated.add(seperatedInterpet[j]);
+                seperated.add(seperatedInterpet[j].trim());
             }
         }
-        return seperated;
+        this.seperatedInterpret = seperated;
     }
 
     public List<String> sortingListToUniqueElements(List toSort){
@@ -53,21 +42,36 @@ public class FormatFile {
     }
 
 
-    public void wordCounter(List values){
+    public void wordCounter(){
         Integer count = 0;
 
-        for (int i = 0; i < values.size(); i++) {
-            count = Collections.frequency(values, values.get(i));
-            this.countedInterprets.add(String.valueOf(values.get(i)));
-            this.countedInterprets.add(String.valueOf(count));
+        for (int i = 0; i < seperatedInterpret.size(); i++) {
+            count = Collections.frequency(seperatedInterpret, seperatedInterpret.get(i));
+            this.countedInterprets.add(String.valueOf(seperatedInterpret.get(i))+":"+count);
         }
-
     }
+
+
+//    public void searchForInterpret(){
+//        for (int i = 10; i < analizedWords.size(); i += 6) {
+//            seperatedInterpret.add(analizedWords.get(i));
+//        }
+//    }
 
 
 
     public void printList(List toPrint){
         System.out.println(toPrint);
+    }
+
+    @Override
+    public int compareTo(FormatFile file) {
+        return 0;
+    }
+
+
+    public List<String> getCountedInterprets() {
+        return countedInterprets;
     }
 
 }

@@ -5,21 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Errors {
-    private List<String> lines = new ArrayList<>();
+    private List<ArrayList<String>> lines;
 
 
     public Errors(List lines){
         this.lines = lines;
     }
 
-    public void emptyColumnError(){
-        for (String line : this.lines)
-            for (int j = 0; j < line.length(); j++) {
-                if (line.charAt(0) == ';')
-                    writeLog("Maleformed input @ line: [" + line + "] --ignoring line\n");
-                if (line.charAt(j) == ';' && line.charAt(j + 1) == ';')
-                    writeLog("Maleformed input @ line: [" + line + "] --ignoring line\n");
-            }
+    public void emptyColumnError(String line){
+        writeLog("Maleformed input @ line: [" + line + "] --ignoring line\n");
     }
 
     public void firstColumnsError(Integer column, String line){

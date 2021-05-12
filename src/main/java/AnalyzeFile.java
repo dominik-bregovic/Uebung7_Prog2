@@ -18,7 +18,7 @@ public class AnalyzeFile {
     }
 
     public void checkList(int columns){
-        this.error.emptyColumnError();
+//        this.error.emptyColumnError();
         columnValues(columns);
         checkColumnValues();
     }
