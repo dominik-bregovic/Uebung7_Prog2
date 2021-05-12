@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,15 +15,28 @@ public class ReadTable {
     ArrayList<String> bewertung = new ArrayList<>();
     Integer column;
     Errors errors = new Errors(categories);
-//    List<String> readLines = new ArrayList<>();
+
 
     public ReadTable(){
         fillCategoriesInList();
         scanList();
+        //writeLogs();
+
         for (int i = 0; i < categories.size(); i++) {
             System.out.println(categories.get(i));
         }
         System.out.println(categories.get(4).get(1));
+        System.out.println(errors.firstColumnsLog);
+        System.out.println(errors.emptyColumnLog);
+    }
+
+    public void fillCategoriesInList(){
+        categories.add(dw);
+        categories.add(lw);
+        categories.add(ww);
+        categories.add(titel);
+        categories.add(interpret);
+        categories.add(bewertung);
     }
 
 
@@ -34,11 +46,9 @@ public class ReadTable {
         try {
             br = new BufferedReader(new FileReader("src/main/resources/music2021.csv"));
             while ((lines = br.readLine()) != null){
-                checkEmptyIntegration(lines);
-                //some issues with firstColumsCheck line should also be ignored when saved into the list
-                //and when calling the second integration then the first doesnt write into log
-               // firstColumnsCheckIntegration(lines,countLine);
-                initializeTable(lines += ";");
+                checkIfEmptyIntegration(lines);
+                firstColumnsCheckIntegration(lines,countLine);
+                initializeTable(lines);
                 countLine++;
             }
         }catch (IOException e){
@@ -52,33 +62,29 @@ public class ReadTable {
             }
         }
     }
-
-    public void fillCategoriesInList(){
-        categories.add(dw);
-        categories.add(lw);
-        categories.add(ww);
-        categories.add(titel);
-        categories.add(interpret);
-        categories.add(bewertung);
+// overflow not working like it should
+    public void writeLogs(){
+        errors.writeLog(errors.emptyColumnLog);
+        errors.writeLog(errors.firstColumnsLog);
+       // errors.writeLog(errors.ratingErrorLog);
     }
 
-    public void checkEmptyIntegration(String lines){
+
+    public void checkIfEmptyIntegration(String line){
+        line += ";";
+        String err = null;
         try {
-            checkIfEmpty(lines += ";");
-        }catch (IOException e){
-            errors.emptyColumnError(lines);
-        }
-    }
-
-    public void checkIfEmpty(String line) throws IOException{
             for (int i = 1; i < line.length(); i++) {
                 if (line.charAt(0) == ';') {
-                    throw new IOException();
+                    err.charAt(0);
                 }
                 if (line.charAt(i-1) == ';' && line.charAt(i) == ';') {
-                    throw new IOException();
+                    err.charAt(0);
                 }
             }
+        }catch (NullPointerException e){
+            errors.emptyColumnError(line);
+        }
     }
 
     public void firstColumnsCheckIntegration(String lines, Integer ignoreFirstLine){
@@ -93,21 +99,22 @@ public class ReadTable {
         try {
             for (int i = 0; i < 3; i++) {
                 this.column = i;
-                number = Integer.valueOf(values[i]);
+                number = Integer.parseInt(values[i]);
             }
-        }catch (NumberFormatException e){
+        }catch (IllegalArgumentException e){
             errors.firstColumnsError( this.column,line, e);
         }
 
     }
 
     public void initializeTable(String line){
+        line += ";";
         String[] values = line.trim().split(";");
         dw.add(values[0]);
         lw.add(values[1]);
         ww.add(values[2]);
         titel.add(values[3]);
-        interpret.add(values[4]);
+        interpret.add(values[4]);/////just spilt again
         bewertung.add(values[5]);
     }
 
