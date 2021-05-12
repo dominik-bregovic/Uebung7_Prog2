@@ -8,14 +8,13 @@ public class AnalyzeFile {
     private List<String> lines = new ArrayList<>();
     private List<String> columnValue = new ArrayList<>();
     private List<Integer> column = new ArrayList<>();
-     List<String> words = new ArrayList<>();
+    private List<String> words = new ArrayList<>();
     private Errors error = new Errors(lines);
 
     public AnalyzeFile(){
         scanList();
         checkList(3);
-
-       // not ready yet checkRating();
+        checkRating();
     }
 
     public void checkList(int columns){
@@ -31,6 +30,7 @@ public class AnalyzeFile {
             while ((lines = br.readLine()) != null){
                 this.lines.add(lines);
                 this.text += lines+";";
+
             }
         }catch (IOException e){
             System.err.println("scan error");
@@ -94,11 +94,22 @@ public class AnalyzeFile {
     }
 
     public void checkRating(){
-        for (int i = 11; i < words.size(); i += 6) {
-            if (words.get(i).equals("")){
-                error.ratingError();
+
+        for (int i = 11; i < this.words.size(); i += 6) {
+            if (this.words.get(i).equals("")){
+                this.error.ratingError(this.lines.get((i+1)/6-1));
             }
-            System.out.print(words.get(i)+", ");
         }
     }
+
+
+    public List<String> getLines() {
+        return lines;
+    }
+
+    public List<String> getWords() {
+        return words;
+    }
+
+
 }
