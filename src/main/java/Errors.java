@@ -33,13 +33,8 @@ public class Errors {
 
     }
 /////////////have to give him a number
-    public void ratingError(String line){
-        try {
-            Integer validValue = Integer.valueOf(";");
-        }catch (NumberFormatException e){
+    public void ratingError(String line, Exception e){
             this.ratingErrorLog += "Parse exception for Bewertung @line : " + " @ line: [" + line + "] -- ignoring\n" +  e.toString();
-        }
-
     }
 
     public void writeLog(String log) {

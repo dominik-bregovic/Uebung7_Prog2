@@ -21,13 +21,6 @@ public class ReadTable {
         fillCategoriesInList();
         scanList();
         writeLogs();
-
-        for (int i = 0; i < categories.size(); i++) {
-            System.out.println(categories.get(i));
-        }
-        System.out.println(categories.get(4).get(1));
-        System.out.println(errors.firstColumnsLog);
-        System.out.println(errors.emptyColumnLog);
     }
 
     public void fillCategoriesInList(){
@@ -46,8 +39,7 @@ public class ReadTable {
         try {
             br = new BufferedReader(new FileReader("src/main/resources/music2021.csv"));
             while ((lines = br.readLine()) != null){
-                checkIfEmptyIntegration(lines);
-                firstColumnsCheckIntegration(lines,countLine);
+                checkingLines(lines, countLine);
                 initializeTable(lines);
                 countLine++;
             }
@@ -66,11 +58,18 @@ public class ReadTable {
     public void writeLogs(){
         errors.writeLog(errors.emptyColumnLog);
         errors.writeLog(errors.firstColumnsLog);
-       // errors.writeLog(errors.ratingErrorLog);
+        errors.writeLog(errors.ratingErrorLog);
     }
 
+    public void checkingLines(String lines, Integer ignoreFirstLine){
+        if (ignoreFirstLine != 1) {
+            checkIfEmpty(lines);
+            firstColumnsCheck(lines += ";");
+            ratingCheck(lines);
+        }
+    }
 
-    public void checkIfEmptyIntegration(String line){
+    public void checkIfEmpty(String line){
         line += ";";
         String err = null;
         try {
@@ -87,12 +86,6 @@ public class ReadTable {
         }
     }
 
-    public void firstColumnsCheckIntegration(String lines, Integer ignoreFirstLine){
-        if (ignoreFirstLine != 1)
-        firstColumnsCheck(lines += ";");
-    }
-
-
     public void firstColumnsCheck(String line) {
         String[] values = line.trim().split(";");
         Integer number;
@@ -101,46 +94,44 @@ public class ReadTable {
                 this.column = i;
                 number = Integer.parseInt(values[i]);
             }
-        }catch (IllegalArgumentException e){
+        }catch (NumberFormatException e){
             errors.firstColumnsError( this.column,line, e);
         }
 
     }
 
+    public void ratingCheck(String line){
+        String[] values = line.split(";");
+        Double rating;
+
+
+        if (line.charAt(values.length-1) == ';' && line.charAt(values.length-2) == ';') {
+            try {
+                rating = Double.parseDouble(";");
+            }catch (NumberFormatException e){
+                errors.ratingError(line, e);
+            }
+
+        }else {
+            try {
+                rating = Double.parseDouble(values[values.length-1].replaceAll(",", "."));
+            }catch (NumberFormatException e){
+                errors.ratingError(line, e);
+            }
+        }
+    }
+
     public void initializeTable(String line){
         line += ";";
         String[] values = line.trim().split(";");
-        dw.add(values[0]);
-        lw.add(values[1]);
-        ww.add(values[2]);
-        titel.add(values[3]);
-        interpret.add(values[4]);/////just spilt again
-        bewertung.add(values[5]);
+        if (values.length-1 == 5){
+            dw.add(values[0]);
+            lw.add(values[1]);
+            ww.add(values[2]);
+            titel.add(values[3]);
+            interpret.add(values[4]);/////just spilt again
+            bewertung.add(values[5]);
+        }
     }
-
-//    public void trimValues(String[] values){
-//        for (int i = 0; i < values.length; i++) {
-//            for (int j = 0; j < values[i].length(); j++) {
-//
-//            }
-//            if (values[i].charAt() ==) {
-//            }
-//        }
-//    }
-//public void separateInterprets(){
-//    ArrayList<String> seperated = new ArrayList<>();
-//    String[] seperatedInterpet;
-//
-//    for (int i = 10; i < analizedWords.size(); i += 6) {
-//        seperatedInterpet = analizedWords.get(i).split(",");
-//
-//        for (int j = 0; j < seperatedInterpet.length; j++) {
-//            seperated.add(seperatedInterpet[j].trim());
-//        }
-//    }
-//    this.seperatedInterpret = seperated;
-//}
-
-
 
 }

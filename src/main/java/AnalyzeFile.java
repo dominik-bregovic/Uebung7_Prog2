@@ -97,7 +97,7 @@ public class AnalyzeFile {
 
         for (int i = 11; i < this.words.size(); i += 6) {
             if (this.words.get(i).equals("")){
-                this.error.ratingError(this.lines.get((i+1)/6-1));
+//                this.error.ratingError(this.lines.get((i+1)/6-1));
             }
         }
     }
