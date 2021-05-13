@@ -22,7 +22,7 @@ public class ReadTable {
         this.filePath = filePath;
         fillCategoriesInList();
         scanList();
-        writeLogs();
+       // writeLogs();
     }
 
     public void fillCategoriesInList(){
@@ -135,5 +135,11 @@ public class ReadTable {
             bewertung.add(values[5]);
         }
     }
+
+
+    public List<ArrayList<String>> getCategories() {
+        return categories;
+    }
+
 
 }
