@@ -40,7 +40,8 @@ public class AnalyseTable {
         wordCounter();
     }
 
-///////////here we could try to compare a uniqueInterprets list with the seperatedInterprets list
+///////////here we could try to compare a uniqueInterprets list with the seperatedInterprets list and could get two lists with
+    ///////one list of interprets and one list with how many tracks
     public void wordCounter(){
         Integer count = 0;
 
