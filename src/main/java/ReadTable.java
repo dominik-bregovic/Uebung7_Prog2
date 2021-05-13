@@ -20,7 +20,7 @@ public class ReadTable {
     public ReadTable(){
         fillCategoriesInList();
         scanList();
-        //writeLogs();
+        writeLogs();
 
         for (int i = 0; i < categories.size(); i++) {
             System.out.println(categories.get(i));
@@ -62,7 +62,7 @@ public class ReadTable {
             }
         }
     }
-// overflow not working like it should
+
     public void writeLogs(){
         errors.writeLog(errors.emptyColumnLog);
         errors.writeLog(errors.firstColumnsLog);
