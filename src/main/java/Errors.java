@@ -1,5 +1,4 @@
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class Errors {
 
 
     }
-/////////////have to give him a number
+
     public void ratingError(String line, Exception e){
             this.ratingErrorLog += "Parse exception for Bewertung @line : " + " @ line: [" + line + "] -- ignoring\n" +  e.toString();
     }
@@ -52,6 +51,7 @@ public class Errors {
                 e.printStackTrace();
             }
         }
-
     }
+    
+
 }

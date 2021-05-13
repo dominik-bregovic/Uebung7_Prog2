@@ -15,9 +15,11 @@ public class ReadTable {
     ArrayList<String> bewertung = new ArrayList<>();
     Integer column;
     Errors errors = new Errors(categories);
+    String filePath;
 
 
-    public ReadTable(){
+    public ReadTable(String filePath){
+        this.filePath = filePath;
         fillCategoriesInList();
         scanList();
         writeLogs();
@@ -37,7 +39,7 @@ public class ReadTable {
         String lines = "";
         Integer countLine = 1;
         try {
-            br = new BufferedReader(new FileReader("src/main/resources/music2021.csv"));
+            br = new BufferedReader(new FileReader(this.filePath));
             while ((lines = br.readLine()) != null){
                 checkingLines(lines, countLine);
                 initializeTable(lines);
