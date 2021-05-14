@@ -1,22 +1,19 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class AnalyseTable {
     ReadTable table;
     List<ArrayList<String>> categories;
     List<String> seperatedInterpret = new ArrayList<>();
-    List<String> countedInterprets = new ArrayList<>();
     List<String> uniqueInterpretList;
-    List<Integer> countUniqueInterpretInList = new ArrayList<>();
+    List<Integer> countTrackToInterpret = new ArrayList<>();
+
 
     public AnalyseTable(ReadTable readtable){
         this.table = readtable;
         this.categories = this.table.getCategories();
         generateSeperateInterpretList();
         uniqueInterpretList = sortingListToUniqueElements(seperatedInterpret);
-        countUniques();
+        countTrackToInterperts();
 
     }
 
@@ -30,7 +27,7 @@ public class AnalyseTable {
                 this.seperatedInterpret.add(seperatedInterpet[j].trim());
             }
         }
-        //wordCounter();
+
     }
 
     public List<String> sortingListToUniqueElements(List toSort){
@@ -41,7 +38,7 @@ public class AnalyseTable {
         return uniqueElements;
     }
 
-    public void countUniques(){
+    public void countTrackToInterperts(){
         Integer counter = 0;
         for (int i = 0; i < uniqueInterpretList.size(); i++) {
             for (int j = 0; j < seperatedInterpret.size(); j++) {
@@ -49,20 +46,10 @@ public class AnalyseTable {
                     counter++;
                 }
             }
-            countUniqueInterpretInList.add(counter);
+            countTrackToInterpret.add(counter);
             counter = 0;
         }
     }
-
-    public void wordCounter(){
-        Integer count = 0;
-
-        for (int i = 0; i < seperatedInterpret.size(); i++) {
-            count = Collections.frequency(seperatedInterpret, seperatedInterpret.get(i));
-            this.countedInterprets.add(seperatedInterpret.get(i)+":"+count);
-        }
-    }
-
 
     public List<ArrayList<String>> getCategories() {
         return categories;
@@ -72,7 +59,7 @@ public class AnalyseTable {
         return uniqueInterpretList;
     }
 
-    public List<Integer> getCountUniqueInterpretInList() {
-        return countUniqueInterpretInList;
+    public List<Integer> getCountTrackToInterpret() {
+        return countTrackToInterpret;
     }
 }

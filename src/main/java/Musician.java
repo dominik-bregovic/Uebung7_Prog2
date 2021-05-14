@@ -1,19 +1,28 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class Musician implements Comparable<Musician>{
 
     private String name;
-    private Integer tracks;
+    private Integer amountOfTracks;
+    private HashMap<String, String> InterpretTracks = new HashMap<>();
+    private HashMap<String, String> InterpretRating = new HashMap<>();
 
-    public Musician(String name, Integer tracks){
+    public Musician(String name, Integer amountOfTracks){
         this.name = name;
-        this.tracks = tracks;
+        this.amountOfTracks = amountOfTracks;
+      //  this.InterpretTracks.put(name, track);
+       // this.InterpretRating.put(name, rating);
+
     }
 
     public String ToString(){
-        return name+":"+tracks;
+        return name+":"+ amountOfTracks;
     }
 
     @Override
     public int compareTo(Musician o) {
-        return o.tracks.compareTo(this.tracks);
+        return o.amountOfTracks.compareTo(this.amountOfTracks);
     }
 }

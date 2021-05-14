@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ReadTable {
@@ -13,6 +14,8 @@ public class ReadTable {
     ArrayList<String> titel = new ArrayList<>();
     ArrayList<String> interpret = new ArrayList<>();
     ArrayList<String> bewertung = new ArrayList<>();
+
+    Integer countLine = 1;
     Integer column;
     Errors errors = new Errors(categories);
     String filePath;
@@ -37,7 +40,7 @@ public class ReadTable {
 
     public void scanList(){
         String lines = "";
-        Integer countLine = 1;
+
         try {
             br = new BufferedReader(new FileReader(this.filePath));
             while ((lines = br.readLine()) != null){
@@ -126,16 +129,15 @@ public class ReadTable {
     public void initializeTable(String line){
         line += ";";
         String[] values = line.trim().split(";");
-        if (values.length-1 == 5){
+        if (values.length-1 == 5 && this.countLine != 1){
             dw.add(values[0]);
             lw.add(values[1]);
             ww.add(values[2]);
             titel.add(values[3]);
-            interpret.add(values[4]);/////just spilt again
+            interpret.add(values[4]);
             bewertung.add(values[5]);
         }
     }
-
 
     public List<ArrayList<String>> getCategories() {
         return categories;
