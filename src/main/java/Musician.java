@@ -3,23 +3,28 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Musician implements Comparable<Musician>{
-
+    private static int countMusicians= 0;
+    private int nr;
     private String name;
     private Integer amountOfTracks;
-    private HashMap<String, String> InterpretTracks = new HashMap<>();
+    private
+    private HashMap<String, String> trackInterprets = new HashMap<>();
     private HashMap<String, String> InterpretRating = new HashMap<>();
 
-    public Musician(String name, Integer amountOfTracks){
+    public Musician(String name, Integer amountOfTracks, List ratingsPerInterpret){
         this.name = name;
-        this.amountOfTracks = amountOfTracks;
-      //  this.InterpretTracks.put(name, track);
-       // this.InterpretRating.put(name, rating);
+        this.amountOfTracks = amountOfTracks;;
+        this.
+        this.nr = countMusicians++;
+
 
     }
 
     public String ToString(){
-        return name+":"+ amountOfTracks;
+        return nr +":"+name+":"+ amountOfTracks+":"+;
     }
+
+
 
     @Override
     public int compareTo(Musician o) {
