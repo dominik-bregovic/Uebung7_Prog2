@@ -20,14 +20,14 @@ public class CreateTable {
     public CreateTable(AnalyseTable alanyse){
         this.analysed = alanyse;
         getRessources();
-        Collections.sort(musicians);
-        for (int i = 0; i < musicians.size(); i++) {
-            System.out.println( musicians.get(i).ToString());
-        }
 
 
         getRatingFromInterpret();
         createMusicans();
+        Collections.sort(musicians);
+        for (int i = 0; i < musicians.size(); i++) {
+            System.out.println( musicians.get(i).ToString());
+        }
     }
 
     public void getRessources(){
@@ -42,7 +42,7 @@ public class CreateTable {
 
     public void createMusicans(){
         for (int i = 0; i < this.interpretList.size(); i++) {
-            this.musicians.add(new Musician(this.interpretList.get(i), this.tracksPerInterpret.get(i)));
+            this.musicians.add(new Musician(this.interpretList.get(i), this.tracksPerInterpret.get(i), this.ratings));
         }
     }
 
@@ -75,7 +75,7 @@ public class CreateTable {
         System.out.println(interpretList);
 
         for (int i = 0; i < interpretList.size(); i++) {
-            interpretRatings.add(new ArrayList<String>());
+            interpretRatings.add(new ArrayList<>());
             for (int j = 0; j < interprets.size(); j++) {
                 if (interpretList.get(i).contains(interprets.get(j)) ){//here unique interpretList
                     interpretRatings.get(i).add(ratings.get(j));

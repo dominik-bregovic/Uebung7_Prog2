@@ -7,21 +7,21 @@ public class Musician implements Comparable<Musician>{
     private int nr;
     private String name;
     private Integer amountOfTracks;
-    private
+    private List<String> ratings;
     private HashMap<String, String> trackInterprets = new HashMap<>();
     private HashMap<String, String> InterpretRating = new HashMap<>();
 
     public Musician(String name, Integer amountOfTracks, List ratingsPerInterpret){
         this.name = name;
         this.amountOfTracks = amountOfTracks;;
-        this.
+        this.ratings = ratingsPerInterpret;
         this.nr = countMusicians++;
 
 
     }
 
     public String ToString(){
-        return nr +":"+name+":"+ amountOfTracks+":"+;
+        return nr +": "+name+": "+ amountOfTracks+": "+ratings.get(nr);
     }
 
 
