@@ -9,25 +9,18 @@ public class AnalyseTable {
     List<String> seperatedInterpret = new ArrayList<>();
     List<String> countedInterprets = new ArrayList<>();
     List<String> uniqueInterpretList;
+    List<Integer> countUniqueInterpretInList = new ArrayList<>();
 
     public AnalyseTable(ReadTable readtable){
         this.table = readtable;
         this.categories = this.table.getCategories();
-        tracksPerInterpret();
+        generateSeperateInterpretList();
         uniqueInterpretList = sortingListToUniqueElements(seperatedInterpret);
+        countUniques();
 
-        for (int i = 0; i < seperatedInterpret.size(); i++) {
-            System.out.print(seperatedInterpret.get(i));
-        }
-        for (int i = 0; i < countedInterprets.size(); i++) {
-            System.out.print(countedInterprets.get(i));
-        }
-        for (int i = 0; i < uniqueInterpretList.size(); i++) {
-            System.out.print(uniqueInterpretList.get(i));
-        }
     }
 
-    public void tracksPerInterpret (){
+    public void generateSeperateInterpretList(){
         String[] seperatedInterpet;
 
         for (int i = 0; i < categories.get(4).size(); i++) {
@@ -37,18 +30,7 @@ public class AnalyseTable {
                 this.seperatedInterpret.add(seperatedInterpet[j].trim());
             }
         }
-        wordCounter();
-    }
-
-///////////here we could try to compare a uniqueInterprets list with the seperatedInterprets list and could get two lists with
-    ///////one list of interprets and one list with how many tracks
-    public void wordCounter(){
-        Integer count = 0;
-
-        for (int i = 0; i < seperatedInterpret.size(); i++) {
-            count = Collections.frequency(seperatedInterpret, seperatedInterpret.get(i));
-            this.countedInterprets.add(String.valueOf(seperatedInterpret.get(i))+":"+count);
-        }
+        //wordCounter();
     }
 
     public List<String> sortingListToUniqueElements(List toSort){
@@ -57,5 +39,40 @@ public class AnalyseTable {
         List<String> uniqueElements = new ArrayList<>(Set);
         Collections.sort(uniqueElements);
         return uniqueElements;
+    }
+
+    public void countUniques(){
+        Integer counter = 0;
+        for (int i = 0; i < uniqueInterpretList.size(); i++) {
+            for (int j = 0; j < seperatedInterpret.size(); j++) {
+                if (uniqueInterpretList.get(i).contains(seperatedInterpret.get(j))) {
+                    counter++;
+                }
+            }
+            countUniqueInterpretInList.add(counter);
+            counter = 0;
+        }
+    }
+
+    public void wordCounter(){
+        Integer count = 0;
+
+        for (int i = 0; i < seperatedInterpret.size(); i++) {
+            count = Collections.frequency(seperatedInterpret, seperatedInterpret.get(i));
+            this.countedInterprets.add(seperatedInterpret.get(i)+":"+count);
+        }
+    }
+
+
+    public List<ArrayList<String>> getCategories() {
+        return categories;
+    }
+
+    public List<String> getUniqueInterpretList() {
+        return uniqueInterpretList;
+    }
+
+    public List<Integer> getCountUniqueInterpretInList() {
+        return countUniqueInterpretInList;
     }
 }
