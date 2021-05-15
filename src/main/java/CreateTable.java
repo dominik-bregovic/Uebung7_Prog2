@@ -9,19 +9,13 @@ public class CreateTable {
     List<String> track;
     List<String> rating;
     List<Musician> musicians = new ArrayList<>();
-    LinkedHashMap<String, String> interpretsTooRatings = new LinkedHashMap<>();
-    LinkedHashMap<String, String> trackRating = new LinkedHashMap<>();
     List<String> ratingPerInperpret = new ArrayList<>();
     ArrayList<String> interprets = new ArrayList<>();
     ArrayList<String> ratings = new ArrayList<>();
-    ArrayList<String> oneInterpretForRating = new ArrayList<>();
-    ArrayList<String> oneRatingForInterpret;
 
     public CreateTable(AnalyseTable alanyse){
         this.analysed = alanyse;
         getRessources();
-
-
         getRatingFromInterpret();
         createMusicans();
         Collections.sort(musicians);
@@ -39,13 +33,6 @@ public class CreateTable {
 
     }
 
-
-    public void createMusicans(){
-        for (int i = 0; i < this.interpretList.size(); i++) {
-            this.musicians.add(new Musician(this.interpretList.get(i), this.tracksPerInterpret.get(i), this.ratings));
-        }
-    }
-
     public void getRatingFromInterpret(){
         String[] seperatedInterpet;
 
@@ -57,10 +44,13 @@ public class CreateTable {
             }
         }
         Collections.sort(ratingPerInperpret);
-        for (int i = 0; i < ratingPerInperpret.size(); i++) {
-            System.out.println(ratingPerInperpret.get(i));
-        }
         sortRatingFromInterpret();
+    }
+
+    public void createMusicans(){
+        for (int i = 0; i < this.interpretList.size(); i++) {
+            this.musicians.add(new Musician(this.interpretList.get(i), this.tracksPerInterpret.get(i), this.interpretRatings));
+        }
     }
 
     public void sortRatingFromInterpret(){
@@ -72,7 +62,7 @@ public class CreateTable {
             }
         }
 
-        System.out.println(interpretList);
+
 
         for (int i = 0; i < interpretList.size(); i++) {
             interpretRatings.add(new ArrayList<>());
@@ -82,7 +72,15 @@ public class CreateTable {
                 }
             }
         }
-        System.out.println(interpretRatings);
+
+//        for (int i = 0; i < interpretRatings.size(); i++) {
+//            System.out.print(interpretRatings.get(i)+", ");
+//        }
+//        System.out.println(interpretList);
+//
+//        for (int i = 0; i < ratingPerInperpret.size(); i++) {
+//            System.out.println(ratingPerInperpret.get(i));
+//        }
 //        for (int i = 0; i < interpretRatings.size(); i++) {
 //            System.out.println(oneInterpretForRating.get(i));
 //        }

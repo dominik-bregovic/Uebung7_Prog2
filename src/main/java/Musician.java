@@ -7,7 +7,7 @@ public class Musician implements Comparable<Musician>{
     private int nr;
     private String name;
     private Integer amountOfTracks;
-    private List<String> ratings;
+    private List<ArrayList<String>> ratings;
     private HashMap<String, String> trackInterprets = new HashMap<>();
     private HashMap<String, String> InterpretRating = new HashMap<>();
 
@@ -21,7 +21,7 @@ public class Musician implements Comparable<Musician>{
     }
 
     public String ToString(){
-        return nr +": "+name+": "+ amountOfTracks+": "+ratings.get(nr);
+        return nr +": "+name+": "+ amountOfTracks+": "+ratings.get(nr) + " from musician";
     }
 
 
