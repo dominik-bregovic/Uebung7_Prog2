@@ -41,8 +41,8 @@ public class CreateTable {
     //trying to connect relationships////////////////////////
     public void gerateHashMaps(String line){
         for (int i = 1; i < track.size(); i++) {
-            trackInterprets.put(track.get(i), rating.get(i)); ///track to Interprets
-            trackRating.put(track.get(i), categories.get(4).get(i));///track to Ratings
+            trackInterprets.put(track.get(i), rating.get(i)); ///track to ratings
+            trackRating.put(track.get(i), categories.get(4).get(i));///track to interprets
         }
     }
 
