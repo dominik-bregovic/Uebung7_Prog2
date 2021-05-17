@@ -7,21 +7,43 @@ public class Musician implements Comparable<Musician>{
     private int nr;
     private String name;
     private Integer amountOfTracks;
-    private List<ArrayList<String>> ratings;
-    private HashMap<String, String> trackInterprets = new HashMap<>();
-    private HashMap<String, String> InterpretRating = new HashMap<>();
+    private List<Double> average;
+    private List<ArrayList<Double>> ratings;
+
 
     public Musician(String name, Integer amountOfTracks, List ratingsPerInterpret){
         this.name = name;
-        this.amountOfTracks = amountOfTracks;;
+        this.amountOfTracks = amountOfTracks;
         this.ratings = ratingsPerInterpret;
         this.nr = countMusicians++;
-
-
+        averageRatings();
+        formatRatings();
     }
 
     public String ToString(){
-        return nr +": "+name+": "+ amountOfTracks+": "+ratings.get(nr) + " from musician";
+
+        return this.name+";"+ this.amountOfTracks + ";"  + averageRatings()+ ";" + formatRatings();
+    }
+
+
+    public String averageRatings(){
+        double avg = 0;
+        for (int i = 0; i < this.ratings.get(this.nr).size(); i++) {
+            avg += this.ratings.get(this.nr).get(i);
+        }
+        return String.format("%.2f", (avg/amountOfTracks));
+    }
+
+    public String formatRatings(){
+        String ratings = "";
+        for (int i = 0; i < this.ratings.get(this.nr).size(); i++) {
+            if (this.ratings.get(this.nr).size()-1 == i){
+                ratings += this.ratings.get(this.nr).get(i) ;
+            }else{
+                ratings += this.ratings.get(this.nr).get(i)+ ", " ;
+            }
+        }
+        return ratings;
     }
 
 

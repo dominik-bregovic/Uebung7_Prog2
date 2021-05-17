@@ -3,25 +3,25 @@ import java.util.*;
 public class CreateTable {
     AnalyseTable analysed;
     List<ArrayList<String>> categories;
-    List<ArrayList<String>> interpretRatings = new ArrayList<>();
     List<String> interpretList;
     List<Integer> tracksPerInterpret;
     List<String> track;
     List<String> rating;
+
     List<Musician> musicians = new ArrayList<>();
-    List<String> ratingPerInperpret = new ArrayList<>();
+    List<String> interpretWithRatings = new ArrayList<>();
     ArrayList<String> interprets = new ArrayList<>();
     ArrayList<String> ratings = new ArrayList<>();
+    List<ArrayList<Double>> interpretRatings = new ArrayList<>();
+
 
     public CreateTable(AnalyseTable alanyse){
         this.analysed = alanyse;
         getRessources();
-        getRatingFromInterpret();
+        getInterpretsAndTheirRatings();
         createMusicans();
-        Collections.sort(musicians);
-        for (int i = 0; i < musicians.size(); i++) {
-            System.out.println( musicians.get(i).ToString());
-        }
+        printMusicians();
+
     }
 
     public void getRessources(){
@@ -33,19 +33,63 @@ public class CreateTable {
 
     }
 
-    public void getRatingFromInterpret(){
-        String[] seperatedInterpet;
+    /*
+    * splitting the interprets to separate indexes in a list
+    * adding every interpret his rates into a new list in order to assign every rating to an interpret
+    * Collections.sort is sorting the interprets by the amount of tracks
+    */
+    public void getInterpretsAndTheirRatings(){
+        String[] separatedInterpret;
 
         for (int i = 0; i < categories.get(4).size(); i++) {
-            seperatedInterpet = categories.get(4).get(i).split(",");
+            separatedInterpret = categories.get(4).get(i).split(",");
 
-            for (int j = 0; j < seperatedInterpet.length; j++) {
-                this.ratingPerInperpret.add(seperatedInterpet[j].trim() + ":" + categories.get(5).get(i)+ ": ");
+            for (int j = 0; j < separatedInterpret.length; j++) {
+                this.interpretWithRatings.add(separatedInterpret[j].trim() + ":" + categories.get(5).get(i)+ ": ");
             }
         }
-        Collections.sort(ratingPerInperpret);
         sortRatingFromInterpret();
     }
+
+    /*brief explanation:
+    * -first method splitting the ratings from the interprets in order to gain two lists with related indexes (interpret to his specific rating)
+    * -second make a list of rating-lists in order to receive a list of ratings with related indexes to the interpretsList
+    * -to sum up, we want a list of lists of Ratings in order to relate them to every singel interpret from the interpretLists-list
+    */
+    public void sortRatingFromInterpret(){
+        splittingInterpretAndTheirRatings();
+        makeListWithInterpretIndexes();
+    }
+
+    public void splittingInterpretAndTheirRatings(){
+        for (int i = 0; i < interpretWithRatings.size(); i++) {
+            String[] interpretRating = interpretWithRatings.get(i).split(":");
+            for (int j = 0; j < interpretRating.length-1; j += 2) {
+                interprets.add(interpretRating[j]);
+                ratings.add(interpretRating[j+1]);
+            }
+        }
+
+    }
+
+    /*nearer explanation:
+    * comparing the interpretList (only unique elements) with the interprets-list
+    * the lists rating and interprets have related indexes to each other. Every ratings-index belongs to one interprets-index
+    * example:
+    * (David G.)interprets index 0 --> ratings index 0 = 1.5
+    * (David G.)interprets index 4 --> ratings index 4 = 2.0
+    */
+    public void makeListWithInterpretIndexes(){
+        for (int i = 0; i < interpretList.size(); i++) {
+            interpretRatings.add(new ArrayList<>());
+            for (int j = 0; j < interprets.size(); j++) {
+                if (interpretList.get(i).contains(interprets.get(j)) ){//here unique interpretList
+                    interpretRatings.get(i).add(Double.parseDouble(ratings.get(j).replaceAll(",",".")));
+                }
+            }
+        }
+    }
+
 
     public void createMusicans(){
         for (int i = 0; i < this.interpretList.size(); i++) {
@@ -53,40 +97,11 @@ public class CreateTable {
         }
     }
 
-    public void sortRatingFromInterpret(){
-        for (int i = 0; i < ratingPerInperpret.size(); i++) {
-            String[] interpretRating = ratingPerInperpret.get(i).split(":");
-            for (int j = 0; j < interpretRating.length-1; j += 2) {
-                interprets.add(interpretRating[j]);
-                ratings.add(interpretRating[j+1]);
-            }
+    public void printMusicians(){
+        Collections.sort(this.musicians);
+        for (Musician musician : this.musicians) {
+            System.out.println(musician.ToString());
         }
-
-
-
-        for (int i = 0; i < interpretList.size(); i++) {
-            interpretRatings.add(new ArrayList<>());
-            for (int j = 0; j < interprets.size(); j++) {
-                if (interpretList.get(i).contains(interprets.get(j)) ){//here unique interpretList
-                    interpretRatings.get(i).add(ratings.get(j));
-                }
-            }
-        }
-
-//        for (int i = 0; i < interpretRatings.size(); i++) {
-//            System.out.print(interpretRatings.get(i)+", ");
-//        }
-//        System.out.println(interpretList);
-//
-//        for (int i = 0; i < ratingPerInperpret.size(); i++) {
-//            System.out.println(ratingPerInperpret.get(i));
-//        }
-//        for (int i = 0; i < interpretRatings.size(); i++) {
-//            System.out.println(oneInterpretForRating.get(i));
-//        }
-
     }
-
-
 
 }
