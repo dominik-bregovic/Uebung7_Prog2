@@ -3,7 +3,7 @@ import java.util.*;
 public class AnalyseTable {
     ReadTable table;
     List<ArrayList<String>> categories;
-    List<String> seperatedInterpret = new ArrayList<>();
+    List<String> separatedInterpret = new ArrayList<>();
     List<String> uniqueInterpretList;
     List<Integer> countTrackToInterpret = new ArrayList<>();
 
@@ -12,7 +12,7 @@ public class AnalyseTable {
         this.table = readtable;
         this.categories = this.table.getCategories();
         generateSeperateInterpretList();
-        uniqueInterpretList = sortingListToUniqueElements(seperatedInterpret);
+        uniqueInterpretList = sortingListToUniqueElements(separatedInterpret);
         countTrackToInterperts();
 
     }
@@ -24,7 +24,7 @@ public class AnalyseTable {
             seperatedInterpet = categories.get(4).get(i).split(",");
 
             for (int j = 0; j < seperatedInterpet.length; j++) {
-                this.seperatedInterpret.add(seperatedInterpet[j].trim());
+                this.separatedInterpret.add(seperatedInterpet[j].trim());
             }
         }
 
@@ -34,15 +34,14 @@ public class AnalyseTable {
         HashSet<String> Set = new HashSet<>();
         Set.addAll(toSort);
         List<String> uniqueElements = new ArrayList<>(Set);
-        Collections.sort(uniqueElements);
         return uniqueElements;
     }
 
     public void countTrackToInterperts(){
         Integer counter = 0;
         for (int i = 0; i < uniqueInterpretList.size(); i++) {
-            for (int j = 0; j < seperatedInterpret.size(); j++) {
-                if (uniqueInterpretList.get(i).contains(seperatedInterpret.get(j))) {
+            for (int j = 0; j < separatedInterpret.size(); j++) {
+                if (uniqueInterpretList.get(i).contains(separatedInterpret.get(j))) {
                     counter++;
                 }
             }
