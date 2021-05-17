@@ -7,7 +7,6 @@ public class Musician implements Comparable<Musician>{
     private int nr;
     private String name;
     private Integer amountOfTracks;
-    private List<Double> average;
     private List<ArrayList<Double>> ratings;
 
 
@@ -16,8 +15,6 @@ public class Musician implements Comparable<Musician>{
         this.amountOfTracks = amountOfTracks;
         this.ratings = ratingsPerInterpret;
         this.nr = countMusicians++;
-        averageRatings();
-        formatRatings();
     }
 
     public String ToString(){
@@ -45,7 +42,6 @@ public class Musician implements Comparable<Musician>{
         }
         return ratings;
     }
-
 
 
     @Override
