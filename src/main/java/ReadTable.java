@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ReadTable {
@@ -16,18 +15,24 @@ public class ReadTable {
     ArrayList<String> bewertung = new ArrayList<>();
 
     Integer countLine = 1;
-    Integer column;
     Errors errors = new Errors(categories);
-    String filePath;
 
 
+    /**
+     * initializing a 2D-list
+     * filling the lines into the 2D-list (List of Arraylists)
+     * writting into logfile if an error occurs
+     * @param filePath is the given filepath to our .csv (received from main-class Application)
+     */
     public ReadTable(String filePath){
-        this.filePath = filePath;
         fillCategoriesInList();
-        scanList();
+        scanList(filePath);
         writeLogs();
     }
 
+    /**
+     * filling all categories in
+     */
     public void fillCategoriesInList(){
         categories.add(dw);
         categories.add(lw);
@@ -38,11 +43,15 @@ public class ReadTable {
     }
 
 
-    public void scanList(){
+    /**
+     * scaning the .csv line by line with a BufferedReader, all the errors are getting checked right here
+     * @param filePath the filepath to our .csv (received from main-class Application)
+     */
+    public void scanList(String filePath){
         String lines = "";
 
         try {
-            br = new BufferedReader(new FileReader(this.filePath));
+            br = new BufferedReader(new FileReader(filePath));
             while ((lines = br.readLine()) != null){
                 checkingLines(lines, countLine);
                 initializeTable(lines);
@@ -60,12 +69,20 @@ public class ReadTable {
         }
     }
 
+    /**
+     * writing all collected occurrences into the logfile
+     */
     public void writeLogs(){
         errors.writeLog(errors.emptyColumnLog);
         errors.writeLog(errors.firstColumnsLog);
         errors.writeLog(errors.ratingErrorLog);
     }
 
+    /**
+     * looking for anomalies and errors in the .csv
+     * @param lines from the readLine-while loop in scan()
+     * @param ignoreFirstLine ignoring the categories from the first Line from the .csv
+     */
     public void checkingLines(String lines, Integer ignoreFirstLine){
         if (ignoreFirstLine != 1) {
             checkIfEmpty(lines);
@@ -74,6 +91,10 @@ public class ReadTable {
         }
     }
 
+    /**
+     * if no parameter then errors.emptyColumnError
+     * @param line from the readLine-while loop in scan()
+     */
     public void checkIfEmpty(String line){
         line += ";";
         String err = null;
@@ -91,20 +112,30 @@ public class ReadTable {
         }
     }
 
+    /**
+     * checking the first three columns
+     * giving the column with the anomaly to the errors.firstColumnsError
+     * @param line from the readLine-while loop in scan()
+     */
     public void firstColumnsCheck(String line) {
         String[] values = line.trim().split(";");
-        Integer number;
+        Integer number = null;
+        Integer column = null;
         try {
             for (int i = 0; i < 3; i++) {
-                this.column = i;
+                column = i;
                 number = Integer.parseInt(values[i]);
             }
         }catch (NumberFormatException e){
-            errors.firstColumnsError( this.column,line, e);
+            errors.firstColumnsError( column,line, e);
         }
 
     }
 
+    /**
+     * checking if there is a rating in the line
+     * @param line from the readLine-while loop in scan()
+     */
     public void ratingCheck(String line){
         String[] values = line.split(";");
         Double rating;
@@ -126,9 +157,36 @@ public class ReadTable {
         }
     }
 
+    /**
+     * adding the lines into the individual categories
+     * @param line from the readLine-while loop in scan()
+     */
     public void initializeTable(String line){
         line += ";";
         String[] values = line.trim().split(";");
+        //switchcase
+        switch(values.length-1) {
+            case 0:
+                // code block
+                break;
+            case 1:
+                // code block
+                break;
+            case 2:
+                // code block
+                break;
+            case 3:
+                // code block
+                break;
+            case 4:
+                // code block
+                break;
+            case 5:
+                // code block
+                break;
+            default:
+                // code block
+        }
         if (values.length-1 == 5 && this.countLine != 1){
             dw.add(values[0]);
             lw.add(values[1]);

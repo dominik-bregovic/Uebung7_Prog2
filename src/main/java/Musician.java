@@ -20,7 +20,7 @@ public class Musician implements Comparable<Musician>{
 
     public String ToString(){
 
-        return this.name+";"+ this.amountOfTracks + ";"  + String.format("%.2f", averageRating) + ";" + formatRatings();
+        return this.nr+" "+ this.name+";"+ this.amountOfTracks + ";"  + String.format("%.2f", averageRating) + ";" + formatRatings();
     }
 
 

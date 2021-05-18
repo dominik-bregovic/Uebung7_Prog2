@@ -17,6 +17,10 @@ public class AnalyseTable {
 
     }
 
+
+    /**
+     * sorting all interprets to an individual index into the separatedInterpret-list
+     */
     public void generateSeperateInterpretList(){
         String[] seperatedInterpet;
 
@@ -30,6 +34,11 @@ public class AnalyseTable {
 
     }
 
+    /**
+     * converting a list into a set in order to get unique elements
+     * @param toSort the list to sort
+     * @return       the list with unique elements
+     */
     public List<String> sortingListToUniqueElements(List toSort){
         HashSet<String> Set = new HashSet<>();
         Set.addAll(toSort);
@@ -37,6 +46,10 @@ public class AnalyseTable {
         return uniqueElements;
     }
 
+    /**
+     * counting how often the individual interpret appeared in the music2021.csv
+     * creating a relation between the indexes of the appearances and the interpret
+     */
     public void countTrackToInterperts(){
         Integer counter = 0;
         for (int i = 0; i < uniqueInterpretList.size(); i++) {

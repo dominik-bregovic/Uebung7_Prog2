@@ -33,7 +33,7 @@ public class CreateTable {
 
     }
 
-    /*
+    /**
     * splitting the interprets to separate indexes in a list
     * adding every interpret his rates into a new list in order to assign every rating to an interpret
     * Collections.sort is sorting the interprets by the amount of tracks
@@ -51,7 +51,7 @@ public class CreateTable {
         sortRatingFromInterpret();
     }
 
-    /*brief explanation:
+    /**brief explanation:
     * -first method splitting the ratings from the interprets in order to gain two lists with related indexes (interpret to his specific rating)
     * -second make a list of rating-lists in order to receive a list of ratings with related indexes to the interpretsList
     * -to sum up, we want a list of lists of Ratings in order to relate them to every singel interpret from the interpretLists-list
@@ -72,7 +72,7 @@ public class CreateTable {
 
     }
 
-    /*nearer explanation:
+    /**nearer explanation:
     * comparing the interpretList (only unique elements) with the interprets-list
     * the lists rating and interprets have related indexes to each other. Every ratings-index belongs to one interprets-index
     * example:
@@ -91,12 +91,21 @@ public class CreateTable {
     }
 
 
+    /**
+     * creating instances of Musician and add the to the list
+     */
     public void createMusicans(){
         for (int i = 0; i < this.interpretList.size(); i++) {
             this.musicians.add(new Musician(this.interpretList.get(i), this.tracksPerInterpret.get(i), this.interpretRatings));
         }
     }
 
+
+    /**
+     * sorting the musician list
+     * by amount of tracks
+     * by average rating
+     */
     public void printMusicians(){
         sortMusician();
         Collections.sort(this.musicians);
@@ -105,6 +114,9 @@ public class CreateTable {
         }
     }
 
+    /**
+     * adding RatingCompare in order to sort the average ratings from the musician list
+     */
     public void sortMusician(){
         RartingCompare rc = new RartingCompare();
         Collections.sort(this.musicians, rc);
