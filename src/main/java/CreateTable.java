@@ -98,10 +98,16 @@ public class CreateTable {
     }
 
     public void printMusicians(){
+        sortMusician();
         Collections.sort(this.musicians);
         for (Musician musician : this.musicians) {
             System.out.println(musician.ToString());
         }
+    }
+
+    public void sortMusician(){
+        RartingCompare rc = new RartingCompare();
+        Collections.sort(this.musicians, rc);
     }
 
 }
