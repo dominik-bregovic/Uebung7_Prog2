@@ -94,6 +94,7 @@ public class ReadTable {
 
     /**
      * if no parameter then errors.emptyColumnError
+     * forcing and error if one "field" is empty
      * @param line from the readLine-while loop in scan()
      */
     public void checkIfEmpty(String line){
@@ -114,6 +115,7 @@ public class ReadTable {
 
     /**
      * checking the first three columns
+     * forcing an error if value is not an Integer
      * giving the column with the anomaly to the errors.firstColumnsError
      * @param line from the readLine-while loop in scan()
      */
@@ -134,12 +136,12 @@ public class ReadTable {
 
     /**
      * checking if there is a rating in the line
+     * forcing a error if empty value
      * @param line from the readLine-while loop in scan()
      */
     public void ratingCheck(String line){
         String[] values = line.split(";");
         Double rating;
-
 
         if (line.charAt(values.length) == ';' && line.charAt(values.length-1) == ';') {
             try {
