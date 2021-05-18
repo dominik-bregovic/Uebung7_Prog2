@@ -141,7 +141,7 @@ public class ReadTable {
         Double rating;
 
 
-        if (line.charAt(values.length-1) == ';' && line.charAt(values.length-2) == ';') {
+        if (line.charAt(values.length) == ';' && line.charAt(values.length-1) == ';') {
             try {
                 rating = Double.parseDouble(";");
             }catch (NumberFormatException e){
@@ -165,7 +165,7 @@ public class ReadTable {
         line += ";";
         String[] values = line.trim().split(";");
 
-        if (values.length-1 == 5 && this.countLine != 1){
+        if (values.length == 6 && this.countLine != 1){
             dw.add(values[0]);
             lw.add(values[1]);
             ww.add(values[2]);
