@@ -84,9 +84,10 @@ public class ReadTable {
      * @param ignoreFirstLine ignoring the categories from the first Line from the .csv
      */
     public void checkingLines(String lines, Integer ignoreFirstLine){
+        lines += ";";
         if (ignoreFirstLine != 1) {
             checkIfEmpty(lines);
-            firstColumnsCheck(lines += ";");
+            firstColumnsCheck(lines);
             ratingCheck(lines);
         }
     }
@@ -96,7 +97,6 @@ public class ReadTable {
      * @param line from the readLine-while loop in scan()
      */
     public void checkIfEmpty(String line){
-        line += ";";
         String err = null;
         try {
             for (int i = 1; i < line.length(); i++) {
@@ -164,29 +164,7 @@ public class ReadTable {
     public void initializeTable(String line){
         line += ";";
         String[] values = line.trim().split(";");
-        //switchcase
-        switch(values.length-1) {
-            case 0:
-                // code block
-                break;
-            case 1:
-                // code block
-                break;
-            case 2:
-                // code block
-                break;
-            case 3:
-                // code block
-                break;
-            case 4:
-                // code block
-                break;
-            case 5:
-                // code block
-                break;
-            default:
-                // code block
-        }
+
         if (values.length-1 == 5 && this.countLine != 1){
             dw.add(values[0]);
             lw.add(values[1]);
