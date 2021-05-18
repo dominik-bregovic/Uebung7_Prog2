@@ -109,6 +109,7 @@ public class CreateTable {
     public void printMusicians(){
         sortMusician();
         Collections.sort(this.musicians);
+        System.out.println("Interpret;Number of Tracks;Average Rating;Single Ratings");
         for (Musician musician : this.musicians) {
             System.out.println(musician.ToString());
         }
