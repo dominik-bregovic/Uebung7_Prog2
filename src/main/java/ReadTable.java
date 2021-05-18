@@ -167,7 +167,7 @@ public class ReadTable {
         line += ";";
         String[] values = line.trim().split(";");
 
-        if (values.length == 6 && this.countLine != 1){
+        if (values.length == 6 && this.countLine != 1 && ignoreLine(values)){
             dw.add(values[0]);
             lw.add(values[1]);
             ww.add(values[2]);
