@@ -175,6 +175,20 @@ public class ReadTable {
         }
     }
 
+    public boolean ignoreLine(String[] values){
+        boolean hasValue = true;
+
+        for (int i = 0; i < 3; i++) {
+            if (values[i].equals(""))
+                hasValue = false;
+        }
+        for (int i = 0; i < values.length; i++) {
+            if (values[i].equals(""))
+                hasValue = false;
+        }
+        return hasValue;
+    }
+
     public List<ArrayList<String>> getCategories() {
         return categories;
     }
