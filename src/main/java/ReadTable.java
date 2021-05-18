@@ -175,6 +175,12 @@ public class ReadTable {
         }
     }
 
+    /**
+     * if the .csv gives us an empty value then we can prevent the line being passed into our new list
+     * we are only considering empty fields (""), not spaces or not valid characters
+     * @param values includes all values from the scanned line splited into an String[]
+     * @return gives a boolean back the shows us if there is an empty value in the line
+     */
     public boolean ignoreLine(String[] values){
         boolean hasValue = true;
 
